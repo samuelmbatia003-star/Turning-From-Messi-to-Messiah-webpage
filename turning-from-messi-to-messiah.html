@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Turning From Messi to Messiah</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,600;0,700;1,600;1,700&family=Lora:ital,wght@0,400;0,500;1,400;1,500&family=Inter:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#F2E9D9;
+    --paper-box:#EDE2CC;
+    --ink:#2B2420;
+    --ink-soft:#4A423A;
+    --green:#1F4A38;
+    --maroon:#7A2A2A;
+    --maroon-deep:#5C1F1F;
+    --gold:#B8863B;
+    --highlight:#E4D0B2;
+  }
+
+  *{box-sizing:border-box;}
+
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Lora',serif;
+    font-size:18px;
+    line-height:1.8;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  .wrap{
+    max-width:700px;
+    margin:0 auto;
+    padding:64px 24px 110px;
+  }
+
+  /* ---------- Header ---------- */
+  .eyebrow{
+    font-family:'Inter',sans-serif;
+    font-size:13px;
+    font-weight:700;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    color:var(--maroon);
+    text-align:center;
+    margin-bottom:.9em;
+  }
+
+  h1.title{
+    font-family:'Fraunces',serif;
+    font-weight:700;
+    font-size:clamp(34px,6.4vw,54px);
+    text-align:center;
+    color:var(--green);
+    line-height:1.15;
+    margin:0 0 .35em;
+  }
+  h1.title em{
+    font-style:italic;
+    font-weight:600;
+    color:var(--gold);
+  }
+
+  .subtitle{
+    font-family:'Lora',serif;
+    font-style:italic;
+    font-size:19px;
+    text-align:center;
+    color:var(--ink-soft);
+    margin:0 0 2.4em;
+  }
+
+  .hr-gold{
+    border:none;
+    border-top:3px solid var(--gold);
+    margin:0 0 3em;
+  }
+
+  /* ---------- Body copy ---------- */
+  p{
+    margin:0 0 1.4em;
+    text-align:justify;
+    color:var(--ink);
+  }
+
+  p.dropcap:first-letter{
+    font-family:'Fraunces',serif;
+    font-weight:700;
+    font-size:3.35em;
+    float:left;
+    line-height:.82;
+    padding-right:.09em;
+    padding-top:.02em;
+    color:var(--green);
+  }
+
+  .hl{
+    font-weight:700;
+    color:var(--green);
+    background-image:linear-gradient(transparent 62%, var(--highlight) 62%);
+  }
+
+  /* ---------- Section divider ---------- */
+  .divider{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:16px;
+    margin:2.8em 0;
+  }
+  .divider::before,.divider::after{
+    content:"";
+    flex:1;
+    max-width:190px;
+    height:1px;
+    background:var(--gold);
+    opacity:.65;
+  }
+  .divider .dot{
+    width:6px;
+    height:6px;
+    flex:none;
+    border-radius:50%;
+    background:var(--gold);
+  }
+
+  /* ---------- Verse reference line ---------- */
+  .verse-ref{
+    font-family:'Lora',serif;
+    font-style:italic;
+    text-align:center;
+    color:var(--ink-soft);
+    margin:2em 0 1em;
+  }
+
+  /* ---------- Box quote (labeled scripture block) ---------- */
+  .box-quote{
+    background:var(--paper-box);
+    border-radius:10px;
+    padding:30px 34px;
+    margin:1.6em 0 2em;
+  }
+  .box-quote .label{
+    font-family:'Inter',sans-serif;
+    font-weight:700;
+    font-size:12.5px;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+    color:var(--maroon);
+    margin-bottom:.9em;
+  }
+  .box-quote p{
+    font-family:'Lora',serif;
+    font-style:italic;
+    color:var(--maroon-deep);
+    margin:0 0 .9em;
+    text-align:left;
+  }
+  .box-quote p:last-of-type{margin-bottom:0;}
+  .box-quote .cite{
+    text-align:right;
+    font-style:italic;
+    color:var(--ink-soft);
+    margin-top:.8em;
+    font-size:15px;
+  }
+
+  /* ---------- Pull quote (left border, unlabeled) ---------- */
+  .pull-quote{
+    border-left:3px solid var(--maroon);
+    background:rgba(237,226,204,.45);
+    padding:18px 28px;
+    margin:1.6em 0 2em;
+  }
+  .pull-quote p{
+    font-family:'Lora',serif;
+    font-style:italic;
+    color:var(--maroon-deep);
+    margin:0 0 .5em;
+    text-align:left;
+  }
+  .pull-quote p:last-child{margin-bottom:0;}
+  .pull-quote .hl{
+    background-image:linear-gradient(transparent 62%, var(--highlight) 62%);
+  }
+
+  /* ---------- Numbered step list ---------- */
+  ol.steps{
+    list-style:none;
+    padding:0;
+    margin:1.6em 0;
+  }
+  ol.steps li{
+    display:flex;
+    gap:16px;
+    align-items:flex-start;
+    margin-bottom:1em;
+  }
+  .badge{
+    flex:none;
+    width:32px;
+    height:32px;
+    border-radius:50%;
+    background:var(--green);
+    color:var(--paper);
+    font-family:'Inter',sans-serif;
+    font-weight:700;
+    font-size:14px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    margin-top:.15em;
+  }
+  ol.steps li p{margin:0;text-align:left;}
+
+  /* ---------- Numbered section headings ---------- */
+  h2.num-head{
+    font-family:'Fraunces',serif;
+    font-style:italic;
+    font-weight:700;
+    font-size:26px;
+    color:var(--maroon-deep);
+    margin:1.9em 0 .7em;
+    line-height:1.3;
+  }
+
+  /* ---------- Small-caps sub-labels ---------- */
+  .label-tag{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin:1.7em 0 .9em;
+  }
+  .label-tag .bar{
+    width:4px;
+    height:15px;
+    background:var(--gold);
+    flex:none;
+  }
+  .label-tag span{
+    font-family:'Inter',sans-serif;
+    font-weight:700;
+    font-size:13px;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+    color:var(--green);
+  }
+
+  /* ---------- Inline GOAT badge ---------- */
+  .goat-badge{
+    display:inline-block;
+    background:var(--gold);
+    color:var(--green);
+    font-weight:700;
+    padding:.12em .5em;
+    border-radius:6px;
+    font-family:'Lora',serif;
+  }
+
+  /* ---------- Closing ---------- */
+  .final-line{
+    font-family:'Lora',serif;
+    font-style:italic;
+    font-size:21px;
+    text-align:center;
+    color:var(--green);
+    margin:2.3em 0 1em;
+  }
+
+  .end-symbol{
+    text-align:center;
+    color:var(--gold);
+    font-size:22px;
+    margin-bottom:1em;
+  }
+
+  @media (max-width:480px){
+    body{font-size:16.5px;}
+    .box-quote{padding:24px 22px;}
+    .pull-quote{padding:16px 20px;}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="eyebrow">A Reflection — World Cup 2026</div>
+  <h1 class="title">Turning From Messi<br>to <em>Messiah</em></h1>
+  <p class="subtitle">On the Lord's GOAT, and the goat debate that actually matters</p>
+  <hr class="hr-gold">
+
+  <p class="dropcap">Greetings, beloved child of God. In the aftermath of the FIFA 2026 World Cup I have decided to write an article that hopefully will capture the attention of a few or many (especially those who were mentally and emotionally invested in the tournament) and <strong class="hl">direct it to matters of their eternal interests</strong>. I want to state that I am not deep into football and might be wrong about some of the things I state in this article. Consider me as a silent passive observer of the sport who happens to have a little knowledge about it, sufficient enough to engage in small talk with those who seem to be ardent fans.</p>
+
+  <p>The North American, 3-nation-hosted World Cup was one of its kind. Talk about the locations of its hosting, the 48 teams' participation, the round-of-32 matches, the advancement of another 12 teams to the round of 32 (aside from positions 1 and 2 in the group tables), the use of various new technologies in the matches and the underdogs' apparent takeover (Cape Verde might win the next World Cup, by the way), incredible saves by talented keepers, a top-level Golden Boot race, crazy comebacks, etc. So many things I could highlight about the second-biggest sporting event on the planet.</p>
+
+  <p>I think we can all agree that this World Cup was in a way centered on one man and his team. I'm of course talking about "the man, the myth, the legend, the 'GOAT'" (as YouTube commenters put it — sounds idolatrous) — Lionel Messi and his die-hard Argentine team. I stand to be corrected but I think the guy was the main man of the show. He attracted the attention of supporters and haters alike. Speculations and theories about FIFA scripting Argentina's wins for Messi's sake, of course, served only to rivet minds and hearts to the 39-year-old man from Rosario. I'm aware there was this GOAT debate/contest between Messi and Ronaldo fans, apparently Ronaldo's 'GOATness' wasn't displayed as such in this tournament, and after Portugal's early exit, it was Messi's 'GOAT' domination (Mbappé is a GOAT in the making, I guess). He appears to be greatly loved and, in a concerning way, idolized by his supporters. Of course, there are still people who deny his 'GOATness'; others don't like him but are nevertheless drawn to him, closely watching him that they might behold his low moments.</p>
+
+  <p>Messi has had incredible achievements and displayed brilliant talent across the years of his career as a professional footballer — you can Google the details if you'd like — his persistent popularity in our age is what stands out to me. When we were kids we used his name to refer to ourselves or our friends whenever we did good football moves as we played with our nylon-, leaves-, and thread-made custom soccer balls (good old days). And still, his name is being invoked by millions if not billions of humans across the globe. Messi's team lost the final match against the strategic Spanish squad, whether that's a good thing or not I don't know — what if Messi had won? Think about the reverence and admiration that would have been given to a man. Well, the 'GOAT' did have his share of good times in this World Cup and world cups.</p>
+
+  <p>That said, I seriously think we are giving undue attention, heart energy, and interest to the wrong GOAT or GOATS. We are <strong class="hl">rendering too much of our beings to these sports stars.</strong> Many of my brothers especially appear to <strong class="hl">worship</strong> their fellow men <strong class="hl">due to their mere sporting talent</strong>, all the while investing so little of themselves to the Lord's GOAT — <strong class="hl">the MESSIAH (JESUS CHRIST)</strong>. Yes, in reality (sports aside), Jesus Christ — the <strong class="hl">Messiah is the only GREATEST OF ALL TIMES</strong>, and He will forever remain so. He is not only the <strong class="hl">Creator</strong> but the <strong class="hl">Sustainer of everything</strong>: "And He is before all things, and by Him all things consist." Col. 1:17. He is God's Messiah <strong class="hl">chosen to save us from the ruin brought by sin.</strong> Messiah is the one who ought to have our dearest interest and attention<strong class="hl">, but His position in our hearts and minds is being robbed by, among many other things, sports and sports stars.</strong> For today I won't dwell on this (modern-day idolatry), but this is a gentle rebuke to especially Christians who appear to have greater interest in things that passeth away than in the things of eternity.</p>
+
+  <div class="divider"><span class="dot"></span></div>
+
+  <p>"Messiah — the Lord's GOAT" — I didn't refer to Christ this way only to mean that He is the greatest of all time, which, of course, He is. In Leviticus 16, the Bible symbolically uses a goat called the 'Lord's goat' to represent Christ and His atoning work on our behalf. Interestingly we also see that the Lord's goat has a kind of rival goat called the scapegoat, or Azazel's goat. <strong class="hl">There is a kind of goat debate that we are required to engage in as we shall see</strong>, this time though not to assess which goat has more goals or better finessing and shooting abilities <strong class="hl">but which Goat is trustworthy and worthy of our worship</strong>. At this point, you'd do well to take out your Bible — we're going deep!</p>
+
+  <p class="verse-ref">Leviticus 16:29–30,</p>
+
+  <div class="box-quote">
+    <div class="label">Leviticus 16:29–30</div>
+    <p>[29] And this shall be a statute forever unto you: that in the seventh month, on the tenth day of the month, ye shall afflict your souls, and do no work at all.</p>
+    <p>[30] For on that day shall the priest make an atonement for you, to cleanse you, that ye may be clean from all your sins before the LORD...</p>
+  </div>
+
+  <p>In Leviticus 16, we are introduced to the second-last annual ceremonial festival of the Jewish sanctuary system. The day, known as Yom Kippur in Hebrew, is called the Day of Atonement. On this day the high priest would enter into the Most Holy Place compartment of the Tabernacle, the section that was behind the veil. The Tabernacle/sanctuary was divided into three parts:</p>
+
+  <ol class="steps">
+    <li><span class="badge">1</span><p>Outer court — contained the brazen altar and laver/basin</p></li>
+    <li><span class="badge">2</span><p>The Holy Place — contained the Table of Shewbread, the candlestick, and the golden altar</p></li>
+    <li><span class="badge">3</span><p>The Most Holy Place — contained the ark of the covenant, and God's visible presence was above it.</p></li>
+  </ol>
+
+  <p>All throughout the year the priests would officiate and minister in the outer court and Holy Place, and they would perform various rites and ceremonies mostly involving handling the sacrifices and offerings brought by the people to the sanctuary. Then, once a year, the high priest was to officiate in the Most Holy Place; he would perform a bunch of rites that were intended to 'make an atonement for the people and to cleanse them from all their sins'. The ceremonies of the day <strong class="hl">centered on two goats</strong> as it is written:</p>
+
+  <div class="box-quote">
+    <div class="label">Leviticus 16 (selected verses)</div>
+    <p>[5] And he shall take of the congregation of the children of Israel two kids of the goats for a sin offering, ...</p>
+    <p>[7] And he shall take the two goats and present them before the LORD at the door of the tabernacle of the congregation.</p>
+    <p>[8] And Aaron shall cast lots upon the two goats; one lot for the LORD, and the other lot for the scapegoat.</p>
+    <p>[9] And Aaron shall bring the goat upon which the LORD'S lot fell, and offer him for a sin offering.</p>
+    <p>[10] But the goat, on which the lot fell to be the scapegoat, shall be presented alive before the LORD, to make an atonement with him, and to let him go for a scapegoat into the wilderness.</p>
+    <p>[15] Then shall he kill the goat of the sin offering, that is for the people, and bring his blood within the vail, and do with that blood as he did with the blood of the bullock, and sprinkle it upon the mercy seat, and before the mercy seat:</p>
+    <p>[16] And he shall make an atonement for the holy place, because of the uncleanness of the children of Israel, and because of their transgressions in all their sins: and so shall he do for the tabernacle of the congregation, that remaineth among them in the midst of their uncleanness.</p>
+    <p>[17] And there shall be no man in the tabernacle of the congregation when he goeth in to make an atonement in the holy place, until he come out, and have made an atonement for himself, and for his household, and for all the congregation of Israel.</p>
+    <p>[18] And he shall go out unto the altar that is before the LORD, and make an atonement for it; and shall take of the blood of the bullock, and of the blood of the goat, and put it upon the horns of the altar round about.</p>
+    <p>[19] And he shall sprinkle of the blood upon it with his finger seven times, and cleanse it, and hallow it from the uncleanness of the children of Israel.</p>
+    <p>[20] And when he hath made an end of reconciling the holy place, and the tabernacle of the congregation, and the altar, he shall bring the live goat:</p>
+    <p>[21] And Aaron shall lay both his hands upon the head of the live goat, and confess over him all the iniquities of the children of Israel, and all their transgressions in all their sins, putting them upon the head of the goat, and shall send him away by the hand of a fit man into the wilderness:</p>
+    <p>[22] And the goat shall bear upon him all their iniquities unto a land not inhabited: and he shall let go the goat in the wilderness."</p>
+    <div class="cite">Leviticus 16:5, 7–10, 15–22</div>
+  </div>
+
+  <p class="verse-ref">Let's lock in on the goats...</p>
+
+  <ol class="steps">
+    <li><span class="badge">1</span><p>During the Day of Atonement HP (High Priest) takes two Goats</p></li>
+    <li><span class="badge">2</span><p>HP casts lots for the two goats; when the lot falls, one goat becomes the Lord's Goat and the other the scapegoat</p></li>
+    <li><span class="badge">3</span><p>HP slays the Lord's goat for a sin offering — the goat is sacrificed</p></li>
+    <li><span class="badge">4</span><p>HP takes the blood of the slain goat and goes past the veil into the Most Holy Place and sprinkles it on and before the mercy seat/cover of the ark of the covenant</p></li>
+    <li><span class="badge">5</span><p>HP goes to the Holy Place with the blood of the sacrificed Lord's Goat and puts some of it on the horns of the golden altar and also sprinkles the blood on the altar seven times</p></li>
+    <li><span class="badge">6</span><p>HP takes the live goat/Scapegoat/Azazel's goat, puts his hands on its head and confesses upon him the iniquities of Israel</p></li>
+    <li><span class="badge">7</span><p>The scapegoat is taken away into the wilderness by the hand of a strong man where it's abandoned to wander and die.</p></li>
+  </ol>
+
+  <p>These are the key activities that revolve around the goats during the Day of Atonement.</p>
+
+  <div class="pull-quote">
+    <p>"Now these things <strong class="hl">were our examples</strong>..." 1 Cor. 10:6</p>
+  </div>
+
+  <p>Of course, from Scripture it's obvious that <strong class="hl">the sanctuary services were only symbols/examples/object lessons/theater</strong>. Paul says that they were "..a figure for the time then present, ..., that could not make him that did the service perfect, as pertaining to the conscience perfect." Heb. 9:9. So, yes, these rituals were just <strong class="hl">theater that were meant to point ancient Israel to the reality of Christ's work for us</strong></p>
+
+  <p>The whole ceremony of the Day of Atonement is loaded with important lessons for us to appreciate, learn, and apply. Let's decode and decipher the meanings of the various things mentioned</p>
+
+  <h2 class="num-head">1. During the Day of Atonement HP takes two Goats</h2>
+
+  <div class="label-tag"><span class="bar"></span><span>Day of Atonement</span></div>
+  <p>Atonement (At-One-Ment) originally means to bring <strong class="hl">two people who were in conflict together to be one</strong> — i.e., to bring a state of unity to two individuals who were at enmity.</p>
+
+  <p>God through Christ has been working to bring humans (especially) and all beings in the universe to a state of Oneness with Him. <strong class="hl">The Day of Atonement is the special time period in earth's history when God accelerates and finalizes this work.</strong> The antitypical (the real, non-figurative one) Day of Atonement, according to Bible prophecy, started in the year 1844, as stated in "And he said unto me, Unto two thousand and three hundred days; then shall the sanctuary be cleansed." Daniel 8:14</p>
+
+  <p>The year 1844 is drawn from the calculations based on the time prophecy given to Daniel by the angel Gabriel in Daniel 9:23-29. From 1844 onward, until the time Christ sets up His kingdom on the new earth, it is the antitypical (real, non-figurative) Day of Atonement.</p>
+
+  <div class="label-tag"><span class="bar"></span><span>High Priest</span></div>
+  <p>He, of course, represents Jesus.</p>
+
+  <div class="pull-quote">
+    <p>"Seeing then that we have a great high priest, that is passed into the heavens, Jesus the Son of God, let us hold fast our profession." Hebrews 4:14</p>
+  </div>
+
+  <p>The High Priest is the only person who could enter into the Most Holy Place and minister during the Day of Atonement, signifying that it is only Jesus Christ who can do the work of making us to be at one with God and bring us to unity and harmony with Him through the perfection of our characters to be like His.</p>
+
+  <h2 class="num-head">2. HP casts lots for the two goats; when the lot falls, one goat becomes the Lord's Goat and the other the scapegoat</h2>
+
+  <div class="label-tag"><span class="bar"></span><span>Goats</span></div>
+  <p>The goats represent the two beings and opponents involved in the great controversy — Jesus and Satan.</p>
+
+  <p>The reason they are both represented as goats is that <strong class="hl">Satan seeks to impersonate Christ and present to us a false version of Christ's kingdom — one that runs like the kingdom of a creature (based on imposed rules), while Christ's is the kingdom of the Creator (based on the principles life is built upon).</strong></p>
+
+  <p>So Christ is the Lord's GOAT while Satan is the scapegoat.</p>
+
+  <h2 class="num-head">3. HP slays the Lord's goat for a sin offering — the goat is sacrificed</h2>
+
+  <p>Here is a wonderful thing: of the two GOATs seeking the allegiance of human beings, one <strong class="hl">loves people and offers Himself as a sacrifice for sin — Jesus Christ</strong></p>
+
+  <div class="pull-quote">
+    <p>"Who, being in the form of God, thought it not robbery to be equal with God:</p>
+    <p>But made himself of no reputation, and took upon him the form of a servant, and was made in the likeness of men:</p>
+    <p>And being found in fashion as a man, he humbled himself, and became obedient unto death, even the death of the cross."</p>
+    <p>Philippians 2:6-8</p>
+  </div>
+
+  <p>But the scapegoat — the devil — does not sacrifice himself for people but in fact <strong class="hl">wants to rise up above people and sacrifice them for his own selfish and evil ambitions</strong></p>
+
+  <div class="pull-quote">
+    <p>"How art thou fallen from heaven, O Lucifer, son of the morning! how art thou cut down to the ground, which didst weaken the nations!</p>
+    <p>For thou hast said in thine heart, I will ascend into heaven, I will exalt my throne above the stars of God: I will sit also upon the mount of the congregation, in the sides of the north:</p>
+    <p>I will ascend above the heights of the clouds; I will be like the most High.</p>
+    <p>Yet thou shalt be brought down to hell, to the sides of the pit."</p>
+    <p>Isaiah 14:12-15</p>
+  </div>
+
+  <h2 class="num-head">4. HP takes the blood of the slain goat and goes past the veil into the Most Holy Place and sprinkles it on and before the mercy seat/cover of the ark of the covenant</h2>
+
+  <div class="label-tag"><span class="bar"></span><span>Most Holy Place / Ark of the Covenant</span></div>
+  <p>It <strong class="hl">represents God's universe cleansed and purified from all sin and unified through the work of Jesus.</strong> A great deal of the work done toward this unified, harmonious state is directed to <strong class="hl">sinful humanity</strong>.</p>
+
+  <p>The mercy <strong class="hl">seat/cover of the ark of the covenant represents Christ, who is the point and means of unity for every being in God's universe</strong>. In Greek, the mercy seat is called the 'hilasterion.' Paul refers to Christ as our hilasterion:</p>
+
+  <div class="pull-quote">
+    <p>"Whom God hath set forth to be <strong class="hl">a 'hilasterion' through faith in His blood</strong>..." Rom. 3:25</p>
+  </div>
+
+  <p>The ark of the covenant had the Shekinah glory representing God, the two cherubim representing the angelic host and other unfallen beings in the universe, while the wooden box made of porous acacia wood represents sinful humanity, which is <strong class="hl">covered completely with pure gold to represent the impartation of Christ's precious character to sinful humans.</strong></p>
+
+  <p>The mercy seat/lid, made of complete, pure, <strong class="hl">solid gold, covers the box, representing Christ, who is completely pure and loving and who overwrites our selfish nature with His selfless character.</strong></p>
+
+  <p>The mercy seat is also the element that unifies everything that comprises the ark of the covenant to represent Christ, who brings unification of God, angels, other unfallen beings, and sinful humanity, as stated in Ephesians</p>
+
+  <div class="pull-quote">
+    <p>"That in the dispensation of the fullness of times He might gather together in one all things in Christ, both which are in heaven, and which are on earth; even in Him" Eph. 1:10</p>
+  </div>
+
+  <div class="label-tag"><span class="bar"></span><span>Blood of the Slain Lord's Goat</span></div>
+
+  <div class="pull-quote">
+    <p>"...for the life of all flesh is the blood thereof: whosoever eateth it shall be cut off." Lev. 17:14</p>
+  </div>
+
+  <p>This represents the <strong class="hl">Life/perfected human character of Jesus Christ</strong></p>
+
+  <div class="label-tag"><span class="bar"></span><span>Sprinkling of Blood Seven Times</span></div>
+
+  <p>Seven is the number of <strong class="hl">spiritual perfection.</strong> The sprinkling of the blood <strong class="hl">seven times represents the total sealing and perfection of God's people into the truth, love, and character of Christ.</strong></p>
+
+  <p>The blood is sprinkled on the <strong class="hl">ark of the covenant seven times</strong> and on the <strong class="hl">golden altar</strong> seven times.</p>
+
+  <p>One of the things the blood being sprinkled on the ark of the covenant (first) represents is the work of <strong class="hl">settling God's servants into His truth and love — sealing</strong> the servants of God <strong class="hl">who will be used in the final grand proclamation of the final message of mercy</strong>. This work is referred to in Rev. 7:2-3:</p>
+
+  <div class="pull-quote">
+    <p>"And I saw another angel ascending from the east<strong class="hl">, having the seal of the living God</strong>: and he cried with a loud voice to the four angels, to whom it was given to hurt the earth and the sea, Saying, Hurt not the earth, neither the sea, nor the trees, till we <strong class="hl">have sealed the servants of our God in their foreheads.</strong>" Rev. 7:2-3</p>
+  </div>
+
+  <h2 class="num-head">5. HP goes to the Holy Place with the blood of the sacrificed Lord's Goat and puts some of it on the horns of the golden altar and also sprinkles the blood on the altar seven times</h2>
+
+  <p>The golden altar represents those <strong class="hl">good-hearted people who are believers in Christ but are not yet completely sealed.</strong> The sprinkling of the altar seven times represents <strong class="hl">the final sealing of their hearts and minds into the truth and love of Christ.</strong> This will come as a result of the <strong class="hl">faithful witness of God's servants, who were sealed prior.</strong></p>
+
+  <p>The horns <strong class="hl">symbolize the residual sinful elements that have not been completely done away with.</strong> With this putting of some blood on them, the final touches of sanctification are done — <strong class="hl">involving the complete impartation and receiving of the perfect life of Christ into the believer's heart and mind — in order to bring about oneness with God.</strong></p>
+
+  <h2 class="num-head">6. HP takes the live goat/Scapegoat/Azazel's goat, puts his hands on its head and confesses upon him the iniquities of Israel</h2>
+
+  <p>This represents <strong class="hl">putting the responsibility for the sin problem back where it originated</strong>. At its root, the sin problem is composed of <strong class="hl">lies about God</strong> that prevent His created beings from <strong class="hl">perceiving Him as trustworthy and from trusting Him</strong>. <strong class="hl">Satan is the source/father of these lies about God</strong>, and he <strong class="hl">falsely accuses</strong> God of being the cause of what he (Satan) has brought through his rebellion against God. Now, the High Priest's putting his hand upon the scapegoat and confessing the iniquities of the children of Israel on it represents the transfer of the responsibility for sin to where it belongs — <strong class="hl">or, if you will, placing the blame where it truly belongs: on the Devil.</strong> This is achieved through the <strong class="hl">revelation of the truth of God's character, which exonerates the lies told by the devil,</strong> so that everyone in the universe sees Satan for who he truly is.</p>
+
+  <div class="pull-quote">
+    <p>"Those who see you (Satan) stare at you, they ponder your fate: '<strong class="hl">Is this the man who shook the earth and made kingdoms tremble, the man who made the world a wilderness, who overthrew its cities and would not let his captives go home?</strong>'" Isaiah 14:16-17</p>
+  </div>
+
+  <h2 class="num-head">7. The scapegoat is taken away into the wilderness by the hand of a strong man where it's abandoned to wander and die.</h2>
+
+  <p>This symbolizes the eventual <strong class="hl">removal of Satan and his influence from the universe</strong>. He has been actively spreading <strong class="hl">sin and selfishness upon this earth and bringing sorrow to God's heart</strong>, but his campaign of evil will be stopped, and <strong class="hl">God's universe shall be entirely freed from Satan's lies and selfishness.</strong></p>
+
+  <div class="divider"><span class="dot"></span></div>
+
+  <p>This is the meaning of the events connected with the two goats in the Day of Atonement. We are living in the very Day of Atonement, and God has commanded us to live in a certain way. During the Day of Atonement ancient Israel were supposed to... '...and you must <strong class="hl">deny yourselves</strong>...' (Leviticus 16:31). Another translation says, '<strong class="hl">and afflict your souls...</strong>' This was to signify their fervent interest and affection in the solemn and important work that the HP was conducting on their behalf. Now, how much more should we — who are <strong class="hl">living in the real Day of Atonement</strong>, in which Christ is working to purify us, His bride, and prepare us for His second coming — have our minds and hearts turned to Him? <strong class="hl">Shouldn't our minds and hearts be supremely turned and fixed on the Messiah — the Lord's GOAT who sacrificed Himself for our washing, purification from sin, and unification with God?</strong></p>
+
+  <p>And the one truly important GOAT preference we are to decide on is whether we shall prefer the Lord's <span class="goat-badge">GOAT</span> or the scapegoat to be master of our lives. Which <strong class="hl">Goat do you find worthy in your life — Jesus or Satan? Which Goat's principles or methods do you prefer: the love, truth, and freedom of the Lord's Goat, or the selfishness, lies, and bondage of the scapegoat?</strong></p>
+
+  <p>I make a plea to you that you behold <strong class="hl">Messiah — the Lord's GOAT</strong>, that <strong class="hl">you cherish Him in your heart and make Him first in your life</strong>. May God help us to <strong class="hl">esteem His GOAT more than all other goats.</strong></p>
+
+  <p class="final-line">Behold Him. Cherish Him. Let Him be first — the Lord's GOAT.</p>
+
+  <div class="end-symbol">&#10022;</div>
+
+</div>
+</body>
+</html>
